@@ -18,7 +18,7 @@ def get_user_by_email(db: _orm.Session, email:str):
 
 def create_user(db:_orm.Session, user:_schemas.UserCreate):
     fake_hash = user.password + 'hashed'
-    db_user = _models.User(email=user.email, hash_pass=fake_hash)
+    db_user = _models.User(email=user.email, hash_pass=fake_hash, first_name=user.first_name, last_name=user.last_name)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)

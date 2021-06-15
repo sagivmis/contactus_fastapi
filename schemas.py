@@ -20,6 +20,8 @@ class Post(_PostBase):
 
 class _UserBase(_pydantic.BaseModel):
     email:str
+    first_name: str
+    last_name: str
 
 class UserCreate(_UserBase):
     password: str

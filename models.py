@@ -6,10 +6,12 @@ import database as _database
 
 class User(_database.Base):
     __tablename__ = "users"
-    id=_sql.Column(_sql.Integer, primary_key=True, index=True)
-    email= _sql.Column(_sql.String, unique=True, index=True)
+    id =_sql.Column(_sql.Integer, primary_key=True, index=True)
+    email = _sql.Column(_sql.String, unique=True, index=True)
     hash_pass = _sql.Column(_sql.String)
     is_active = _sql.Column(_sql.Boolean, default=True)
+    first_name = _sql.Column(_sql.String, index=True)
+    last_name = _sql.Column(_sql.String, index=True)
 
     posts = _orm.relationship("Post", back_populates="owner")
 
