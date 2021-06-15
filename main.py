@@ -1,6 +1,7 @@
 from typing import List
 import fastapi as _fastapi
 import uvicorn as _uvi
+from fastapi.middleware.cors import CORSMiddleware
 
 import services as _services
 import schemas as _schemas
@@ -8,6 +9,14 @@ import sqlalchemy.orm as _orm
 app= _fastapi.FastAPI()
 
 _services.create_database()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 if __name__ == "__main__":
     _uvi.run("main:app", host="0.0.0.0", port=8000, reload=True)
