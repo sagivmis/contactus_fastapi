@@ -29,3 +29,7 @@ def get_users(db:_orm.Session, skip:int, limit:int):
 
 def get_user(db:_orm.Session, user_id: int):
     return db.query(_models.User).filter(_models.User.id == user_id).first()
+
+def delete_user(db:_orm.Session, user_id:int):
+    db.query(_models.User).filter(_models.User.id == user_id).delete()
+    db.commit()
